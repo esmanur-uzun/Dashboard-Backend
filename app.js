@@ -1,9 +1,11 @@
+require("express-async-errors")
 const express = require("express")
 const app = express()
 require("dotenv").config()
 require("./src/db/dbConnection")
 const router = require("./src/routers")
 const port = process.env.PORT || 5001
+const errorHandler = require("./src/middlewares/errorHandler")
 
 app.use(express.json())
 app.use(express.json({limit:"50mb"}))
@@ -17,7 +19,8 @@ app.get("/",(req,res) =>{
     })
 })
 
-
+// hata yakalama
+app.use(errorHandler)
 
 app.listen(port, ()=>{
     console.log(`server ${port} portunda çalışıtor`);
