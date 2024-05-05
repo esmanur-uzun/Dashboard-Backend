@@ -8,7 +8,7 @@ const errorHandlerMiddleware = (err,req,res,next) => {
             message: err.message
         })
     }
-
+   
     return res.status(500).json({
         success:false,
         message:"API hatası!"
